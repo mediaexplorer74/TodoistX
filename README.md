@@ -18,7 +18,7 @@
 
 ### About dev/test credentials
 
-Register your dev account here https://developer.todoist.com/ and get test token? etc.
+Register your dev account here https://developer.todoist.com/ and get test token.
 
 Find SettingsProvider.cs and paste the test token here:
 ```csharp
