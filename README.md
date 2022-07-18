@@ -3,9 +3,11 @@
 "TodoistX" is planned as lite version of Todoist app for Windows 10 Mobile Lumia fans. =)
 
 ## Screenshots
-![Screenshot 1](Images/shot1.png)
+
+![Screenshot 1](Images/shot.png)
 
 ## Tech details
+
 - Platform: UWP (I have plans to "jump" into/onto XF)
 - Targets: ARM, x64
 - OS: Windows 10/11, Windows 10 Mobile (os build: 15063 or above)
@@ -89,20 +91,11 @@ await transaction.CommitAsync();
 ```
 
 ## Referencies
-
-[![Build status](https://ci.appveyor.com/api/projects/status/r5ylbxtpjya9ayk2?svg=true)](https://ci.appveyor.com/project/olsh/todoist-net)
-
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=todoist-net&metric=alert_status)](https://sonarcloud.io/dashboard?id=todoist-net)
-
-[![codecov](https://codecov.io/gh/olsh/todoist-net/branch/master/graph/badge.svg)](https://codecov.io/gh/olsh/todoist-net)
-
-[![NuGet](https://img.shields.io/nuget/v/Todoist.Net.svg)](https://www.nuget.org/packages/Todoist.Net/)
-
-A [Todoist Sync API](https://developer.todoist.com/sync/v8/) client for .NET.
+- A [Todoist.Net](https://github.com/olsh/todoist-net) library for .NET
+- A [Todoist Sync API](https://developer.todoist.com/sync/v8/).
 
 
 ## ..
-
 AS IS. No support. RnD only.
 
 
