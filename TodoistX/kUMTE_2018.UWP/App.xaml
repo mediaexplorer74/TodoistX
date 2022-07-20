@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="kUMTE_2018.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:kUMTE_2018.UWP"
+    RequestedTheme="Light">
+
+</Application>

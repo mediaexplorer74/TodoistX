@@ -2,15 +2,12 @@
 
 "TodoistX" is planned as lite version of Todoist app for Windows 10 Mobile Lumia fans. =)
 
-## Screenshots
-
-![Screenshot 1](Images/shot.png)
 
 ## Tech details
 
-- Platform: UWP (I have plans to "jump" into/onto XF)
+- Platforms: UWP, Android (Xamarin Forms used)
 - Targets: ARM, x64
-- OS: Windows 10/11, Windows 10 Mobile (os build: 15063 or above)
+- OSes: Windows 10/11, Windows 10 Mobile (os build: 14393 or above); Android
 - Status: Prototype / Alpha version
 
 
@@ -18,14 +15,16 @@
 
 ### About dev/test credentials
 
-Register your dev account here https://developer.todoist.com/ and get test token.
+Register your dev account here https://developer.todoist.com/, create TodoistX app and get test token.
 
-Find SettingsProvider.cs and paste the test token here:
+Find App.xaml.cs and paste this test token here (instead of xxxxxxx):
 ```csharp
- public static string GetToken()
- {
-   return "xxxxxxx";// paste here your todoist test token
- } 
+ var d = new AppSetting()
+{
+    AppName = "TodoistX",
+    Author = " Media Explorer",
+    AuthKey = "xxxxxxx"
+};
 ```
 
 ### About Todoist.net Library

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="kUMTE_2018.SettingPage"
+             Title="Setting">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Your auth. key"
+                   x:Name="AuthKeyEntry"/>
+            <Button Text="Save"
+                    Clicked="Button_OnClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
