@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoistX.AddProjectPage"
+             Title="Add new project">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Project title"
+                   x:Name="TitleEntry" />
+            <Button Text="Add"
+                    x:Name="AddProjectButton"
+                    Clicked="AddProjectButton_OnClicked"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoistX.ProjectBrowsePage"
+             Title="Project browse">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" 
+                     x:Name="AddNewProjectButton"
+                     Clicked="AddNewProjectButton_OnClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ListView x:Name="MyListView"
+            ItemsSource="{Binding Items}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement"
+            >
+            
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <TextCell Text="{Binding Name}" />
+        </DataTemplate>
+    </ListView.ItemTemplate>
+    
+  </ListView>
+</ContentPage>

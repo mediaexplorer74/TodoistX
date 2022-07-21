@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32708.82
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kUMTE_2018.Android", "TodoistX\kUMTE_2018.Android\kUMTE_2018.Android.csproj", "{839CB7A0-B49F-4E34-82F2-4745217D324C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoistX.Android", "TodoistX\TodoistX.Android\TodoistX.Android.csproj", "{839CB7A0-B49F-4E34-82F2-4745217D324C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kUMTE_2018.UWP", "TodoistX\kUMTE_2018.UWP\kUMTE_2018.UWP.csproj", "{3C058CB9-6B85-473B-866B-F617CACA12C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoistX.UWP", "TodoistX\TodoistX.UWP\TodoistX.UWP.csproj", "{3C058CB9-6B85-473B-866B-F617CACA12C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kUMTE_2018", "TodoistX\kUMTE_2018\kUMTE_2018.csproj", "{F8EF8620-8D9A-44E2-96F5-17FA2668D3B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoistX", "TodoistX\TodoistX\TodoistX.csproj", "{F8EF8620-8D9A-44E2-96F5-17FA2668D3B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todoist.Net", "TodoistX\Todoist.Net\Todoist.Net.csproj", "{910ED699-F284-4506-B0B3-DFEAB849B928}"
 EndProject

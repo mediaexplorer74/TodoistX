@@ -2,6 +2,9 @@
 
 "TodoistX" is planned as lite version of Todoist app for Windows 10 Mobile Lumia fans. =)
 
+## Screenshots
+
+![Todoist's Task List](Images/shot1.png)
 
 ## Tech details
 
