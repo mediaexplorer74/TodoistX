@@ -45,7 +45,7 @@ namespace TodoistX
                           //AuthKey = "2f6421653f8eb04e42492f94615d6b32daf343bc"
                             AppName = "TodoistX",
                             Author = " Media Explorer",
-                            AuthKey = "829fbf9d4edb4c8fa4bcfa2b3e338800804c2c1d" // paste your Access Token here
+                            AuthKey = "xxxxx" // paste your Access Token here
                     };
 
 	                conn.Insert(d);
