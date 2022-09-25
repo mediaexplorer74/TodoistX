@@ -5,6 +5,7 @@
     <VersionPrefix>2.2.0</VersionPrefix>
     <Authors>Oleg Shevchenko</Authors>
     <TargetFrameworks>netstandard1.4</TargetFrameworks>
+    <LangVersion>7.1</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Todoist.Net</AssemblyName>
     

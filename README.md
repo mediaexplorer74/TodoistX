@@ -4,7 +4,8 @@
 
 ## Screenshots
 
-![Todoist's Task List](Images/shot1.png)
+![Task List - Win10Mobile](Images/shot1.png)
+![Task List - Android](Images/shot2.png)
 
 ## Tech details
 
