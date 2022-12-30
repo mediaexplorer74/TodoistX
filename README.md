@@ -1,4 +1,4 @@
-# TodoistX
+# TodoistX v2-alpha
 
 "TodoistX" is planned as lite version of Todoist app for Windows 10 Mobile Lumia fans. =)
 
@@ -11,8 +11,10 @@
 
 - Platforms: UWP, Android (Xamarin Forms used)
 - Targets: ARM, x64
-- OSes: Windows 10/11, Windows 10 Mobile (os build: 14393 or above); Android
-- Status: Prototype / Alpha version
+- OSes: Windows 10/11, Windows 10 Mobile (os build: 10240 or above); Android
+- Dev. Status: Prototype / Alpha version
+- Sync API updated to v9
+- "Astoria" compatibility added (os build 10240)
 
 
 ## Get started
@@ -95,7 +97,7 @@ await transaction.CommitAsync();
 
 ## Referencies
 - A [Todoist.Net](https://github.com/olsh/todoist-net) library for .NET
-- A [Todoist Sync API](https://developer.todoist.com/sync/v8/).
+- A [Todoist Sync API v9](https://developer.todoist.com/sync/v9/)
 
 
 ## ..

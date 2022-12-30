@@ -1,20 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Todoist.Net
 {
-    public sealed class TodoistRestClient : ITodoistRestClient
+    internal sealed class TodoistRestClient : ITodoistRestClient
     {
         private readonly HttpClient _httpClient;
 
-        public TodoistRestClient() : this(null)
+        public TodoistRestClient() : this(null, null)
         {
         }
 
-        public TodoistRestClient(IWebProxy proxy)
+        public TodoistRestClient(string token) : this(token, null)
+        {
+        }
+
+        public TodoistRestClient(IWebProxy proxy) : this(null, proxy)
+        {
+        }
+
+        public TodoistRestClient(string token, IWebProxy proxy)
         {
             var httpClientHandler = new HttpClientHandler();
             if (proxy != null)
@@ -24,7 +33,15 @@ namespace Todoist.Net
             }
 
             // ReSharper disable once ExceptionNotDocumented
-            _httpClient = new HttpClient(httpClientHandler) { BaseAddress = new Uri("https://todoist.com/API/v8/") };
+            _httpClient = new HttpClient(httpClientHandler)
+            {
+                BaseAddress = new Uri("https://api.todoist.com/sync/v9/")
+            };
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
         }
 
         public void Dispose()

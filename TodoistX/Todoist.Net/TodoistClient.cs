@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -31,15 +30,13 @@ namespace Todoist.Net
 
         private readonly ITodoistRestClient _restClient;
 
-        private readonly string _token;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TodoistClient" /> class.
         /// </summary>
         /// <param name="token">The token.</param>
         /// <exception cref="ArgumentException">Value cannot be null or empty - token</exception>
         public TodoistClient(string token)
-            : this(token, new TodoistRestClient())
+            : this(token, null)
         {
         }
 
@@ -50,25 +47,22 @@ namespace Todoist.Net
         /// <param name="proxy">The proxy.</param>
         /// <exception cref="ArgumentException">Value cannot be null or empty - token</exception>
         public TodoistClient(string token, IWebProxy proxy)
-            : this(token, new TodoistRestClient(proxy))
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TodoistClient" /> class.
-        /// </summary>
-        /// <param name="token">The token.</param>
-        /// <param name="restClient">The rest client.</param>
-        /// <exception cref="System.ArgumentException">Value cannot be null or empty - token</exception>
-        public TodoistClient(string token, ITodoistRestClient restClient)
+            : this(new TodoistRestClient(token, proxy))
         {
             if (string.IsNullOrEmpty(token))
             {
                 throw new ArgumentException("Value cannot be null or empty.", nameof(token));
             }
+        }
 
-            _token = token;
-            _restClient = restClient;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TodoistClient" /> class.
+        /// </summary>
+        /// <param name="restClient">The rest client.</param>
+        /// <exception cref="System.ArgumentException">Value cannot be null or empty - token</exception>
+        public TodoistClient(ITodoistRestClient restClient)
+        {
+            _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
 
             Projects = new ProjectsService(this);
             Templates = new TemplateService(this);
@@ -85,11 +79,6 @@ namespace Todoist.Net
             Sharing = new SharingService(this);
             Emails = new EmailService(this);
             Sections = new SectionService(this);
-        }
-
-        public TodoistClient(ITodoistRestClient restClient)
-        {
-            _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
         }
 
         /// <summary>
@@ -216,7 +205,19 @@ namespace Todoist.Net
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="resourceTypes" /> is <see langword="null" /></exception>
         /// <exception cref="HttpRequestException">API exception.</exception>
-        public Task<Resources> GetResourcesAsync(params ResourceType[] resourceTypes)
+        public Task<Resources> GetResourcesAsync(params ResourceType[] resourceTypes) => GetResourcesAsync("*", resourceTypes);
+
+        /// <summary>
+        /// Gets the resources asynchronous.
+        /// </summary>
+        /// <param name="syncToken">The sync token returned from todoist for increment sync</param>
+        /// <param name="resourceTypes">The resource types.</param>
+        /// <returns>
+        /// All resources.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="resourceTypes" /> is <see langword="null" /></exception>
+        /// <exception cref="HttpRequestException">API exception.</exception>
+        public Task<Resources> GetResourcesAsync(string syncToken, params ResourceType[] resourceTypes)
         {
             if (resourceTypes == null)
             {
@@ -229,7 +230,7 @@ namespace Todoist.Net
             }
 
             var parameters = new LinkedList<KeyValuePair<string, string>>();
-            parameters.AddLast(new KeyValuePair<string, string>("sync_token", "*"));
+            parameters.AddLast(new KeyValuePair<string, string>("sync_token", syncToken));
             parameters.AddLast(
                 new KeyValuePair<string, string>(
                     "resource_types",
@@ -367,8 +368,6 @@ namespace Todoist.Net
             ICollection<KeyValuePair<string, string>> parameters,
             IEnumerable<ByteArrayContent> files)
         {
-            TryAddToken(parameters);
-
             var response = await _restClient.PostFormAsync(resource, parameters, files)
                                .ConfigureAwait(false);
             var responseContent = await ReadResponseAsync(response)
@@ -388,8 +387,6 @@ namespace Todoist.Net
             string resource,
             ICollection<KeyValuePair<string, string>> parameters)
         {
-            TryAddToken(parameters);
-
             var response = await _restClient.PostAsync(resource, parameters)
                                .ConfigureAwait(false);
 
@@ -453,33 +450,20 @@ namespace Todoist.Net
                     exceptions = new LinkedList<TodoistException>();
                 }
 
-                //RnD : TodoistException
                 exceptions.AddLast(
                     new TodoistException(
                         (long)dynamicStatus.error_code,
                         dynamicStatus.error.ToString(),
                         dynamicStatus));
             }
-            
 
             if (exceptions?.Any() == true)
             {
-                //throw new AggregateException(exceptions);
-
-                var Ex = new AggregateException(exceptions);
-                Debug.WriteLine("! Exception: " + Ex.Message);
+                throw new AggregateException(exceptions);
             }
         }
 
-        private void TryAddToken(ICollection<KeyValuePair<string, string>> parameters)
-        {
-            if (!string.IsNullOrEmpty(_token))
-            {
-                parameters.Add(new KeyValuePair<string, string>("token", _token));
-            }
-        }
-
-        private void UpdateTempIds(Command[] commands, IDictionary<Guid, long> tempIdMappings)
+        private void UpdateTempIds(Command[] commands, IDictionary<Guid, string> tempIdMappings)
         {
             foreach (var command in commands)
             {

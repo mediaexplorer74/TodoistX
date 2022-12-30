@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 
 using Newtonsoft.Json;
@@ -33,6 +33,13 @@ namespace Todoist.Net.Serialization.Resolvers
             if (property.DeclaringType == typeof(UserInfo))
             {
                 property.ShouldSerialize = instance => false;
+            }
+
+            // Null DueDate == no DueDate, so we should always send the DueDate
+            // https://developer.todoist.com/sync/v9/#due-dates
+            else if (property.PropertyType == typeof(DueDate))
+            {
+                property.NullValueHandling = NullValueHandling.Include;
             }
 
             return property;

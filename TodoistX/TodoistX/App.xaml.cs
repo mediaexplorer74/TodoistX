@@ -40,12 +40,12 @@ namespace TodoistX
 	            {
 	                var d = new AppSetting()
 	                {
-                          //AppName = "TodoistX",
-                          //Author = "Jaroslav Langer",
-                          //AuthKey = "2f6421653f8eb04e42492f94615d6b32daf343bc"
-                            AppName = "TodoistX",
-                            Author = " Media Explorer",
-                            AuthKey = "xxxxx" // paste your Access Token here
+                          AppName = "TodoistX",
+                          Author = "Jaroslav Langer",
+                          AuthKey = "2f6421653f8eb04e42492f94615d6b32daf343bc"
+                          //  AppName = "TodoistX",
+                          //  Author = " Media Explorer",
+                          //  AuthKey = "xxxxxx" // paste your Access Token here
                     };
 
 	                conn.Insert(d);

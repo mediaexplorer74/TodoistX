@@ -63,14 +63,12 @@ namespace Todoist.Net.Exceptions
             Code = code;
         }
 
-        //[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-        /*
+       // [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
         private TodoistException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+            : base(info.ToString(), null/*context*/)
         {
             Code = info.GetInt64(nameof(Code));
         }
-        */
 
         /// <summary>
         ///     Gets the code.
@@ -85,8 +83,9 @@ namespace Todoist.Net.Exceptions
         public dynamic RawError { get; }
 
         /// <inheritdoc />
-        /*
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+
+        // override
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
             {
@@ -97,8 +96,7 @@ namespace Todoist.Net.Exceptions
             // ReSharper disable once ExceptionNotDocumented
             info.AddValue(nameof(Code), Code);
 
-            base.GetObjectData(info, context);
+            //base.GetObjectData(info, context);
         }
-        */
     }
 }

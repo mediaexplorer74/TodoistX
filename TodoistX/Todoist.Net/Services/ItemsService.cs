@@ -53,7 +53,6 @@ namespace Todoist.Net.Services
                     });
         }
 
-       
         /// <summary>
         /// Gets all the user’s completed items (tasks).
         /// </summary>
@@ -84,6 +83,5 @@ namespace Todoist.Net.Services
 
             return TodoistClient.PostAsync<Item>("quick/add", quickAddItem.ToParameters());
         }
-        
     }
 }
